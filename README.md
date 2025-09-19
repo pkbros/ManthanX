@@ -1,3 +1,4 @@
+
 # MANTHANX: Smart AgriAssist
 
 An AI-powered, farmer-friendly web application designed for farmers in Kerala with low tech literacy. The platform provides localized, accessible agricultural guidance.
@@ -9,12 +10,15 @@ A basic chat interface that allows farmers to ask agricultural questions and rec
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js (version 16+)
 - Google Gemini API key
 
 ### Setup Instructions
+
 1. **Get Gemini API Key**: Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. **Setup Backend**: 
+2. **Setup Backend**:
+
    ```bash
    cd backend
    npm install
@@ -22,7 +26,9 @@ A basic chat interface that allows farmers to ask agricultural questions and rec
    # Add your Gemini API key to .env
    npm run dev
    ```
+
 3. **Setup Frontend**:
+
    ```bash
    cd frontend
    npm install
