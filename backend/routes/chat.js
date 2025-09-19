@@ -24,7 +24,8 @@ if (process.env.GEMINI_API_KEY) {
 router.post('/message', async (req, res) => {
   try {
     console.log('[Chat] Incoming message:', req.body);
-    const { message } = req.body;
+    const { message, location } = req.body;
+    const locationText = location ? `Location: ${location}` : '';
 
     if (!message || message.trim() === '') {
       return res.status(400).json({ 
@@ -42,10 +43,11 @@ router.post('/message', async (req, res) => {
     }
 
     // Create a prompt optimized for agricultural assistance
-    const prompt = `You are MANTHANX, an AI assistant helping farmers in Kerala, India. 
-    Provide helpful, practical agricultural advice. Keep responses simple and easy to understand.
-    
-    User question: ${message}`;
+    const prompt = `You are an AI assistant for farmers.
+${locationText}
+User question: ${message}
+
+Reply in a clear, organized, and easy-to-read format. Use bullet points or numbered lists for steps, and keep the language simple. If the answer has multiple parts, separate them with headings or bold text. Avoid unnecessary repetition. Format your response for readability on web and mobile.`;
 
     // Generate response using Gemini
     let result, response, text;

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-const LocationStats = ({ onLocationChange, location, customMode }) => {
+const LocationStats = ({ onLocationChange, location, customMode, onAreaName }) => {
   const [internalLocation, setInternalLocation] = useState(null);
   const [error, setError] = useState(null);
   const [weather, setWeather] = useState(null);
@@ -76,6 +76,7 @@ const LocationStats = ({ onLocationChange, location, customMode }) => {
         const address = data.address || {};
         const area = address.city || address.town || address.village || address.hamlet || address.state_district || address.state || address.county || data.display_name || 'Unknown area';
         setAreaName(area);
+        if (onAreaName) onAreaName(area);
         setAreaLoading(false);
       })
       .catch(() => {

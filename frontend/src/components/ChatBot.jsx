@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
-const ChatBot = () => {
+const ChatBot = ({ locationString }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -72,8 +72,10 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
+
       const response = await axios.post(`${API_BASE_URL}/api/chat/message`, {
-        message: inputMessage
+        message: inputMessage,
+        location: locationString || undefined
       });
 
       const botMessage = {
@@ -120,7 +122,7 @@ const ChatBot = () => {
       {/* Chat Header */}
       <div className="bg-primary-600 text-white p-4">
         <h2 className="text-xl font-semibold">🌾 Agricultural Assistant</h2>
-        <p className="text-primary-100 text-sm">Ask me anything about farming in Kerala</p>
+        <p className="text-primary-100 text-sm">Ask me anything about farming in {locationString || 'your area'}</p>
       </div>
 
       {/* Messages Container */}
